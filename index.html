@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<canvas id = 'canvas' width="400" height="400"></canvas>
+
+	<style>
+		canvas {
+
+background-color: #000080;
+		}
+	</style>
+
+<script>
+
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+
+				  // Функция для рисования кружков
+
+	var cicrle  = function (x,y,radius, fillCircle) {
+		ctx.beginPath();
+		ctx.arc(x,y,radius, 0 , 2 * Math.PI , false);
+			if(fillCircle){
+				ctx.fill();
+			}else{
+				ctx.stroke();
+			}
+
+	};
+					// Рот
+
+	 var mouse = function(x, y , radius, fillCircle) {
+	 	ctx.beginPath();
+	 	ctx.arc(x,y,radius , 0,   1 * Math.PI,false)
+	 	if(fillCircle){
+				ctx.fill();
+			}else{
+				ctx.stroke();
+			}
+}
+
+	var drawShowMan = function (x,y){
+		ctx.fillStyle = 'white';
+					
+
+					/*Тело*/
+
+		cicrle(x + 50, y + 40, 32,true); 
+		cicrle(x + 50, y + 120, 50, true);	
+		cicrle(x + 50 , y + 230, 65, true);
+		cicrle(x + 100 , y + 100, 15,true);// рука праввая
+		cicrle(x + 0 , y + 100, 15,true);// рука левая
+		cicrle(x + 100 ,  y + 280, 25,true);// нога правая
+		cicrle(x + 0 ,  y + 280, 25,true);// нога левая
+
+
+					// Нос
+
+		ctx.fillStyle = 'orange';
+		cicrle(x + 50, y + 40, 5,true);
+					
+					// Рот
+
+		ctx.fillStyle = 'red';
+		mouse(x+50, y + 50, 15 ,true);
+					
+					// Глаза
+
+		ctx.fillStyle = 'black';
+		cicrle(x + 35 , y + 30, 3.5, true);
+		cicrle(x + 65 , y + 30 , 3.5 ,true);
+		
+					
+
+					//пуговки
+
+		for(var i = 0; i <3; i++){
+			ctx.fillStyle = 'black';
+			cicrle( x + 50 , (i + 155) + i * 35  , 4.5,true);
+
+		}
+		for(var i = 0; i <3; i++){
+			ctx.fillStyle = 'red';
+			cicrle( x + 50 , (i + 155) + i * 35 , 2.5 ,true);
+
+		}
+
+	}; 
+					// Топор - лезвие
+
+	var drawHatchet = function (x,y) {
+	ctx.fillStyle = 'black'
+	ctx.beginPath();
+	ctx.moveTo( x + 75,y + 50);
+	ctx.lineTo( x + 100, y + 75);
+	ctx.lineTo(x+  100,y + 25);
+	ctx.fill()
+	}
+					// Топор - рукоятка
+
+	var drawGrip = function (x,y){
+		ctx.fillStyle = 'SaddleBrown';
+		ctx.beginPath();
+		ctx.moveTo(x + 80 , y + 80);
+		ctx.lineWidth = 8;
+		ctx.lineTo(x + 70, y + 0);
+		ctx.closePath();
+		ctx.stroke();
+		
+	}
+					// Шляпа
+
+	var drawHat = function(x,y){
+		ctx.fillStyle = 'black';
+		ctx.beginPath();
+		ctx.moveTo(x + 155, y + 80);
+		ctx.lineWidth = 12;
+		ctx.lineTo(x + 80,y + 80);
+		ctx.closePath();
+		ctx.stroke();
+
+		
+		ctx.beginPath();
+		ctx.rect(183,30,50,50);
+		ctx.fill();
+		ctx.closePath();		
+}
+
+
+
+
+	drawShowMan(160, 70);
+	drawHatchet(188,70);
+	drawGrip(190,110);
+	drawHat(92,2);
+
+	
+</script>
+</body>
+</html>
